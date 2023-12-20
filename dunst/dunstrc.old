@@ -1,0 +1,65 @@
+[global]
+    width = 300
+    height = 300
+    origin = bottom-right
+    offset = 12x24
+
+    progress_bar_height = 10
+    progress_bar_frame_width = 0
+    progress_bar_min_width = 150
+    progress_bar_max_width = 300
+    progress_bar_corner_radius = 20
+    icon_corner_radius = 12
+
+    separator_height = 2
+    padding = 12
+    horizontal_padding = 12
+    text_icon_padding = 0
+
+    frame_width = 1
+    frame_color = "#93A0A6"
+
+    gap_size = 8
+    separator_color = frame
+
+    font = Roboto 10
+    line_height = 0
+
+    # The format of the message.  Possible variables are:
+    #   %a  appname
+    #   %s  summary
+    #   %b  body
+    #   %i  iconname (including its path)
+    #   %I  iconname (without its path)
+    #   %p  progress value if set ([  0%] to [100%]) or nothing
+    #   %n  progress value if set without any extra characters
+    #   %%  Literal %
+    # Markup is allowed
+    format = "<b>%s</b>\n%b"
+
+    icon_theme = "Fluent-dark, Adwaita-dark"
+    icon_position = left
+    min_icon_size = 24
+    max_icon_size = 64
+    icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
+
+    corner_radius = 12
+
+    mouse_left_click = do_action, context
+    mouse_middle_click = close_all
+    mouse_right_click = close_current
+
+[urgency_low]
+    background = "#0d0c0f"
+    foreground = "#d5e3e8"
+    timeout = 3
+
+[urgency_normal]
+    background = "#0d0c0f"
+    foreground = "#d5e3e8"
+    timeout = 7
+
+[urgency_critical]
+    background = "#0d0c0f"
+    foreground = "#d5e3e8"
+    timeout = 0

@@ -1,0 +1,85 @@
+alt + Return
+  st || alacritty || kitty
+
+alt + space
+  dmenu_run
+
+alt + shift + space
+  rofi -show drun
+
+alt + shift + r
+  bspc wm --restart
+
+alt + shift + q
+  bash ~/.config/sxhkd/scripts/powermenu.sh
+
+alt + {_, control} + q
+  bspc node {--close, --kill}
+
+super + period
+  rofi -show emoji
+
+super + l
+  slock
+
+alt + Tab
+  bash ~/.config/sxhkd/scripts/window-switch.sh
+
+alt + {f, t}
+  bspc node --state {~fullscreen, ~floating}
+
+alt + m
+  bspc desktop --layout next
+
+alt + {1, 2, 3, 4, 5, 6}
+  bspc desktop --focus {1, 2, 3, 4, 5, 6}
+
+alt + shift + {1, 2, 3, 4, 5, 6}
+  bspc node --to-desktop {1, 2, 3, 4, 5, 6} --follow
+
+alt + {bracketleft, bracketright}
+  bspc desktop --focus {prev, next}
+
+alt + shift + {bracketleft, bracketright}
+  bspc node --to-desktop {prev, next} --follow
+
+alt + shift + Left
+  bspc node --resize left -20 0
+
+alt + shift + Right
+  bspc node --resize left 20 0
+
+alt + shift + Up
+  bspc node --resize top 0 -20
+
+alt + shift + Down
+  bspc node --resize top 0 20
+
+super + {_, shift} + {Up, Left, Down, Right}
+  bspc node {--focus, --swap} {north, west, south, east}
+
+
+XF86MonBrightnessUp
+  brightnessctl set 10%+
+
+XF86MonBrightnessDown
+  brightnessctl set 10%-
+
+XF86AudioRaiseVolume
+  pamixer --increase 5 --allow-boost
+
+XF86AudioLowerVolume
+  pamixer --decrease 5 --allow-boost
+
+XF86AudioMute
+  pamixer --toggle-mute
+
+Print
+  gnome-screenshot
+
+shift + Print
+  gnome-screenshot --area
+
+alt + Print
+  gnome-screenshot --interactive
+
