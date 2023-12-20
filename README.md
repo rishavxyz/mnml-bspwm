@@ -2,6 +2,7 @@
 
 Minimal bspwm envionment
 
+![preview](./preview.png)
 
 ## Installation
 
