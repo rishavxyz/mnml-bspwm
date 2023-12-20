@@ -1,6 +1,6 @@
 # mnml-bspwm
 
-Minimal bspwm envionment
+Minimal bspwm desktop environment
 
 ![preview](./preview.png)
 
