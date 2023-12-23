@@ -17,25 +17,16 @@ function say
     set_color normal
 end
 
-function locally_install -a program_name
-    say $program_name
-    cd ./$program_name
-    sudo make clean install
+function install_suckless
+    mkdir -p ~/.local/bin
+    chmod +x ~/.local/bin
 
-    if test $status = 0
-        say $program_name is installed
-        cd ..
-    else
-        say -e $program_name install failed
-        cd ..
-        return 1
-    end
+    cp -vr ./suckless/* ~/.local/bin/
 end
 
-# locally install suckless tools in /usr/local/bin
-locally_install dmenu
-locally_install slock
-locally_install st
+install_suckless
+and say "dmenu, st and slock are installed in $HOME/.local/bin"
+or say -e "Could not install some dmenu, st and slock"
 
 # locally install fonts
 say installing fonts...
@@ -61,7 +52,7 @@ function install_progs
 
         case a A apt Apt
             say sudo apt install ...
-            sudo apt $programs
+            sudo apt install $programs
 
         case p P pacman Pacman
             say sudo pacman -S ...
@@ -75,10 +66,10 @@ and say programs installed
 
 # now copy the configs
 say copying config files
-cp -r ./bspwm ~/.config/
-cp -r ./dunst ~/.config/
-cp -r ./polybar ~/.config/
-cp -r ./sxhkd ~/.config/
+cp -vr ./bspwm ~/.config/
+cp -vr ./dunst ~/.config/
+cp -vr ./polybar ~/.config/
+cp -vr ./sxhkd ~/.config/
 
 if test -f ~/.xinitrc
     say -c orange .xinitrc file exists

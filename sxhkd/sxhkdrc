@@ -4,9 +4,6 @@ alt + Return
 alt + space
   dmenu_run
 
-alt + shift + space
-  rofi -show drun
-
 alt + shift + r
   bspc wm --restart
 
@@ -15,9 +12,6 @@ alt + shift + q
 
 alt + {_, control} + q
   bspc node {--close, --kill}
-
-super + period
-  rofi -show emoji
 
 super + l
   slock

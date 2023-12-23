@@ -32,6 +32,8 @@ Here are some more tricks
 
 ### Touchpad improvements
 
+- **Enable natural scroll and tapping**
+
 Create a drop-in file in `/etc/X11/xorg.conf.d/30-touchpad.conf`
 
 ```conf
@@ -43,6 +45,17 @@ Section "InputClass"
     Option "NaturalScrolling" "true"
 EndSection
 ```
+
+- **Use gestures to navigate**
+
+I have use *libinput-getsures* for this. You may want to manually install it.
+
+Head over to [libinput-getsures github](https://github.com/bulletmark/libinput-gestures) and install it on your distro.
+
+> Arch Linux users can just install it from AUR.
+> Package name: `libinput-getsures`
+
+If you don't use a trackpad just skip it. No need!
 
 ### Gnome-keyring PAM setup
 
@@ -58,6 +71,5 @@ session    optional     pam_gnome_keyring.so auto_start
 ```bash
 git config --global credential.helper /usr/lib/git-core/git-credential-libsecret
 ```
-
 
 # Enjoy

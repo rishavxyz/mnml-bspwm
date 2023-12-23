@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/sh
 
 startOnce() {
 	[ pidof "$1" ] || "$@" &
@@ -31,6 +31,6 @@ export SXHKD_SHELL=sh
 #### autostart applications
 startOnce sxhkd
 startOnce polybar
-libinput-gestures-setup restart
+libinput-gestures-setup >/dev/null && libinput-gestures-setup start
 
 [pidof xfsettingsd] && (sleep 20 && killall xfsettingsd)
