@@ -19,8 +19,7 @@ end
 
 function install_suckless
     mkdir -p ~/.local/bin
-    chmod +x ~/.local/bin
-
+    and chmod +x ~/.local/bin
     cp -vr ./suckless/* ~/.local/bin/
 end
 
@@ -41,28 +40,40 @@ say fonts are installed
 function install_progs
     read -P 'OS package manager? [a]pt, [p]acman, [c]ancel > ' pmgr
 
-    set -l programs bspwm polybar dunst sxhkd feh xdg-desktop-portal xdg-desktop-portal-gtk polkit-gnome brightnessctl pamixer gnome-screenshot gnome-keyring xsetroot wmctrl
+    set -l programs bspwm polybar dunst sxhkd feh xdg-desktop-portal xdg-desktop-portal-gtk brightnessctl pamixer gnome-screenshot gnome-keyring wmctrl
+    set -l arch_cmd "sudo pacman -S --needed $programs xorg-server xsetroot polkit-gnome"
+    set -l deb_cmd "sudo apt install $programs xorg x11-xserver-utils policykit-1-gnome"
 
     switch $pmgr
-        case c C Cancel cancel '*'
-            say -e exiting program
-            say necesarry programs are written in $HOME/programs.txt file, manually install them
-            echo "$programs" >~/programs.txt
-            return 1
-
         case a A apt Apt
             say sudo apt install ...
-            sudo apt install $programs
+            eval $deb_cmd
 
         case p P pacman Pacman
+            set -l cmd "sudo pacman -S --needed $programs xorg-server xsetroot polkit-gnome"
             say sudo pacman -S ...
-            sudo pacman -S $programs
+            eval $arch_cmd
+
+        case c C Cancel cancel '*'
+            say -e installation abort
+            say -c normal programs are written in \"$HOME/programs.txt\" file
+            say -c normal either manually install them
+            say -c brblue or use \"install_mnml_bspwm_arch\" alias for Arch Linux
+            say -c brblue or use \"install_mnml_bspwm_deb\" alias for Debian Linux
+            echo "$programs" >~/programs.txt
+
+            alias install_mnml_bspwm_arch="eval $arch_cmd"
+            alias install_mnml_bspwm_deb="eval $deb_cmd"
+            return 1
+    end
+    if test $status -eq 0
+        say installation complete
     end
 end
 
-say insatlling programs
+say insatlling programs...
+echo
 install_progs
-and say programs installed
 
 # now copy the configs
 say copying config files
@@ -81,6 +92,8 @@ cp ./xinitrc ~/.xinitrc
 and say all config files are copied
 or say -e cannot copy .xinitrc
 
-test -f ~/.fehbg || feh ./bg.png
+test -f ~/.fehbg
+or echo -e "#!/bin/sh\nfeh --no-fehbg --bg-fill $(realpath ./bg.png)" >~/.fehbg
 
+ehco
 say installation complete, you are good to go
